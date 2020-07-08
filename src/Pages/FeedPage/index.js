@@ -85,7 +85,7 @@ export default function FeedPage(){
                 <p>{posts.text}</p>
                 <div>
                     <span>
-                       <CountReducer value={posts.votesCount}/>
+                       <CountReducer value={posts.votesCount} id={posts.id}/>
                     </span>
                     <span>
                         {posts.commentsCount}comentários
