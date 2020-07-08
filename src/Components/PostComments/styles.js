@@ -7,6 +7,7 @@ export const Comment = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 30px 0;
 `;
 
 export const CommentAuthorContainer = styled.div`
@@ -20,4 +21,10 @@ export const CommentFooter = styled.div`
   border-top: 1px solid black;
   width: 35vw;
   display: flex;
+`;
+
+export const CommentTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

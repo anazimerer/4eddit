@@ -4,7 +4,6 @@ export const PostContainer = styled.div``;
 
 export const PostPageContainer = styled.div`
   width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,4 +47,10 @@ export const CommentInPostContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px 0;
+`;
+
+export const PostTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

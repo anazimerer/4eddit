@@ -13,7 +13,7 @@ export default function Routes() {
               <Route exact path="/" component={Login}/> 
               <Route exact path="/sigin" component={SigIn}/>  
               <Route exact path="/feed" component={Feed}/>   
-              <Route exact path="/posts:id" component={Post}/>                
+              <Route exact path="/posts/:id" component={Post}/>                
             </Switch>
         </BrowserRouter>
     );
