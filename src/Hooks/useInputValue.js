@@ -7,9 +7,11 @@ export default function useInputValue (initialState){
     const { value } = event.target;
 
     setInputValue(value);
-    console.log(value);
   };
 
-  return [inputValue, handleInputChange];
+  const clearInputs = () =>{
+    setInputValue("")
+  }
+  return [inputValue, handleInputChange, clearInputs];
 };
 
