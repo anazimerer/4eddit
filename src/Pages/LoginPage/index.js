@@ -31,6 +31,10 @@ export default function Login(){
 			})			
 	})	
 
+	const goToSignupPage = () =>{
+		history.push('/signup')	
+	}
+
     return(
         <div>
         	<forms>			
@@ -55,7 +59,7 @@ export default function Login(){
 				  	required
 				/> 
 				<button onClick={onClickLogin}>ENTRAR</button> 
-				<button>CADASTRAR</button>                 
+				<button onClick={goToSignupPage}>CADASTRAR</button>                 
 			</forms>
 		</div>
     );

@@ -5,14 +5,18 @@ import {
   SignupButton,
   SignupInput,
   SignupHeadline,
+  GoToLoginButton,
+  ButtonContainer,
 } from "./styles";
 import useInputValue from "../../Hooks/useInputValue";
 import api from "../../Sevice/api";
+import { useHistory } from "react-router-dom";
 
 export default function SignUp() {
   const [username, handleChangeUsername] = useInputValue("");
   const [email, handleChangeEmail] = useInputValue("");
   const [password, handleChangePassword] = useInputValue("");
+  const history = useHistory();
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -25,10 +29,14 @@ export default function SignUp() {
       .post("/signup", body)
       .then((response) => {
         console.log(response);
+        history.push('/feed')	
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+  const goToLoginPage = () => {
+    history.push("/");
   };
 
   return (
@@ -60,7 +68,12 @@ export default function SignUp() {
             pattern="{6,}"
             type="password"
           />
-          <SignupButton>Cadastrar</SignupButton>
+          <ButtonContainer>
+            <SignupButton>Cadastrar</SignupButton>
+            <GoToLoginButton onClick={goToLoginPage}>
+              Já possuo conta
+            </GoToLoginButton>
+          </ButtonContainer>
         </form>
       </SignupFormContainer>
     </SignupPageContainer>

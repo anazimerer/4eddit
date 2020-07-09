@@ -18,7 +18,10 @@ export const SignupFormContainer = styled.div`
 `;
 
 export const SignupButton = styled.button`
-  display: block;
+  margin-top: 10px;
+  margin-right: 20px;
+`;
+export const GoToLoginButton = styled.button`
   margin-top: 10px;
 `;
 
@@ -29,4 +32,11 @@ export const SignupInput = styled.input`
 export const SignupHeadline = styled.h1`
   margin-bottom: 40px;
   font-size: 2.5vw;
+`;
+
+export const ButtonContainer = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
 `;

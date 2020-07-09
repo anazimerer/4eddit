@@ -13,15 +13,15 @@ import {
 import PostComments from "../PostComments/PostComments.js";
 import axios from "axios";
 import api from "../../Sevice/api";
-
-const axiosConfig = {
-  headers: {
-    Authorization:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlZeUNtVkliSU8yenBJOHl5bDl0IiwidXNlcm5hbWUiOiJscGFzc29zIiwiZW1haWwiOiJscGFzc29zQGdtYWlsLmNvbSIsImlhdCI6MTU5NDIzNjE1OH0.Y6SVhbCoSaZZNPs3ni5MjjidOXWqYzCxmdiXTeXV_oA",
-  },
-};
+import { useHistory } from "react-router-dom";
 
 function PostDetail(props) {
+  const [postDetail, setPostDetail] = useState({});
+  const [postDetailCommentNumber, setPostDetailCommentNumber] = useState("");
+  const [commentText, setCommentText] = useState("");
+  const [token, setToken] = useState([]);
+  const history = useHistory();
+
   const createComment = () => {
     const body = {
       text: commentText,
@@ -38,6 +38,12 @@ function PostDetail(props) {
       });
   };
 
+  const axiosConfig = {
+    headers: {
+      Authorization: token,
+    },
+  };
+
   const fetchPostDetails = () => {
     api
       .get(`/posts/${props.id}`, axiosConfig)
@@ -52,11 +58,12 @@ function PostDetail(props) {
 
   useEffect(() => {
     fetchPostDetails();
+    setToken(localStorage.getItem("token"));
+    if (token === null) {
+      alert("Login necessário!");
+      history.push("/");
+    }
   });
-
-  const [postDetail, setPostDetail] = useState({});
-  const [postDetailCommentNumber, setPostDetailCommentNumber] = useState("");
-  const [commentText, setCommentText] = useState("");
 
   const handleCommentTextArea = (event) => {
     setCommentText(event.target.value);
@@ -101,7 +108,10 @@ function PostDetail(props) {
           {postDetailCommentNumber}
           {commentsPlural}
         </h3>
-        <PostComments postComments={postDetail.comments} postId={postDetail.id}/>
+        <PostComments
+          postComments={postDetail.comments}
+          postId={postDetail.id}
+        />
       </PostPageContainer>
     </div>
   );
