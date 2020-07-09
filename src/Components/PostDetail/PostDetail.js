@@ -101,7 +101,7 @@ function PostDetail(props) {
           {postDetailCommentNumber}
           {commentsPlural}
         </h3>
-        <PostComments postComments={postDetail.comments} />
+        <PostComments postComments={postDetail.comments} postId={postDetail.id}/>
       </PostPageContainer>
     </div>
   );
