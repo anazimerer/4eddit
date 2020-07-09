@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../Sevice/api';
 import styled from 'styled-components'
-import CountReducer from './CountReducer'
+import CountReducer from '../../Reducers/CountReducer'
 
 const ContainerPost = styled.div`
     border: 1px solid black;
