@@ -32,6 +32,7 @@ export const PostFooter = styled.div`
   border-top: 1px solid black;
   width: 35vw;
   display: flex;
+  justify-content: center;
 `;
 export const CommentTextArea = styled.textarea`
   width: 20vw;
@@ -53,4 +54,19 @@ export const PostTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+export const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const ReturnButtonContainer = styled.div`
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 `;
