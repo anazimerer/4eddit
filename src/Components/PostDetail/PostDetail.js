@@ -9,17 +9,21 @@ import {
   PostTextContainer,
   CommentTextArea,
   CommentInPostContainer,
+  LoadingContainer,
+  ReturnButtonContainer,
 } from "./styles";
 import PostComments from "../PostComments/PostComments.js";
 import axios from "axios";
 import api from "../../Sevice/api";
 import { useHistory } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 function PostDetail(props) {
   const [postDetail, setPostDetail] = useState({});
   const [postDetailCommentNumber, setPostDetailCommentNumber] = useState("");
   const [commentText, setCommentText] = useState("");
   const [token, setToken] = useState([]);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
   const createComment = () => {
@@ -44,12 +48,17 @@ function PostDetail(props) {
     },
   };
 
+  const returnToFeedPage = () => {
+    history.push("/feed");
+  };
+
   const fetchPostDetails = () => {
     api
       .get(`/posts/${props.id}`, axiosConfig)
       .then((response) => {
         setPostDetail(response.data.post);
         setPostDetailCommentNumber(response.data.post.comments.length);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -82,10 +91,16 @@ function PostDetail(props) {
     ) : (
       <p>Seja o primeiro a comentar!</p>
     );
-
-  return (
+  const render = loading ? (
+    <LoadingContainer>
+      <ReactLoading type="spokes" color="blue" />
+    </LoadingContainer>
+  ) : (
     <div>
       <PostPageContainer>
+        <ReturnButtonContainer>
+          <button onClick={returnToFeedPage}>Voltar</button>
+        </ReturnButtonContainer>
         <PostContainer>
           <MainPost>
             <PostAuthorContainer>
@@ -115,6 +130,7 @@ function PostDetail(props) {
       </PostPageContainer>
     </div>
   );
+  return <div>{render}</div>;
 }
 
 export default PostDetail;
