@@ -17,6 +17,7 @@ function reducer(state, action) {
 }
 
 export default function CountReducer(props) {
+   const [token]=useState(localStorage.getItem('token'))
   const [state, dispatch] = useReducer(reducer, initialState);
   const [vote, setVote] = useState(0);
 
@@ -28,14 +29,13 @@ export default function CountReducer(props) {
       };
       const axiosConfig = {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlZeUNtVkliSU8yenBJOHl5bDl0IiwidXNlcm5hbWUiOiJscGFzc29zIiwiZW1haWwiOiJscGFzc29zQGdtYWlsLmNvbSIsImlhdCI6MTU5NDIzNjE1OH0.Y6SVhbCoSaZZNPs3ni5MjjidOXWqYzCxmdiXTeXV_oA",
+          Authorization: token
         },
       };
       api
         .put(`/posts/${props.id}/vote`, body, axiosConfig)
         .then(() => {
-          alert("votouu");
+          alert("voto computado");
           dispatch({ type: "LIKE" });
         })
         .catch((error) => {
@@ -55,8 +55,7 @@ export default function CountReducer(props) {
       };
       const axiosConfig = {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlZeUNtVkliSU8yenBJOHl5bDl0IiwidXNlcm5hbWUiOiJscGFzc29zIiwiZW1haWwiOiJscGFzc29zQGdtYWlsLmNvbSIsImlhdCI6MTU5NDIzNjE1OH0.Y6SVhbCoSaZZNPs3ni5MjjidOXWqYzCxmdiXTeXV_oA",
+          Authorization: token
         },
       };
 

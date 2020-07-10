@@ -1,9 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useReducer} from 'react'
 import { useHistory } from 'react-router-dom'
-import api from '../../Sevice/api';
 import styled from 'styled-components'
-import CountReducer from '../../Reducers/CountReducer'
+
+import api from '../../Sevice/api';
+import Filters from '../../Components/Filters';
 import useInputValue from "../../Hooks/useInputValue";
+
+import CountReducer from '../../Reducers/CountReducer'
+import FiltersReducer, { initialState } from '../../Reducers/FiltersReducer'
+import FiltersContext from '../../Context/FiltersContext'
 
 const ContainerPost = styled.div`
     border: 1px solid black;
@@ -18,10 +23,11 @@ const ContainerPost = styled.div`
     }
 `
 
-export default function FeedPage(){  
-   const [post, setPost]=useState([])
+export default function FeedPage(){     
    const [inputNewPost, handleChangeInputNewPost, clearNewPostInput] = useInputValue("");
+   const [filtersState, filtersDispatch]=useReducer(FiltersReducer, initialState)
    const [token, setToken]=useState()
+   const [post, setPost]=useState([])
    const history= useHistory();
 
     useEffect(()=>{
@@ -73,8 +79,8 @@ export default function FeedPage(){
     }
 
     const listOfPosts= post.map((posts)=>{
-        return ( 
-            <ContainerPost>
+        return (
+            <ContainerPost key={posts.id}>
                 <h4>{posts.username}</h4>
                 <p>{posts.text}</p>
                 <div>
@@ -91,23 +97,28 @@ export default function FeedPage(){
     })
 
     return(
-        <div>
-            FeedPage
-            <section>
-                Create post 
-                <input 
-                    type="text"
-                    name="inputNewPost"
-                    value={inputNewPost}
-                    placeholder="Escreva algo"
-                    onChange={handleChangeInputNewPost}
-                />
-                <button onClick={onClickCreatePost}>postar</button>
-            </section>
-            <section>
-               {listOfPosts}
-            </section>
-        </div>
+        <FiltersContext.Provider value={{ filters: filtersState, dispatch: filtersDispatch }}> 
+            <div>
+                FeedPage
+                <section>
+                    Criar Post: 
+                    <input 
+                        type="text"
+                        name="inputNewPost"
+                        value={inputNewPost}
+                        placeholder="Escreva algo"
+                        onChange={handleChangeInputNewPost}
+                    />
+                    <button onClick={onClickCreatePost}>postar</button>
+                </section>
+                <div>
+                    <Filters />
+                </div>
+                <section>
+                   {listOfPosts}
+                </section>
+            </div>
+        </FiltersContext.Provider> 
     );
 }
 
