@@ -13,7 +13,6 @@ import {
   ReturnButtonContainer,
 } from "./styles";
 import PostComments from "../PostComments/PostComments.js";
-import axios from "axios";
 import api from "../../Sevice/api";
 import { useHistory } from "react-router-dom";
 import ReactLoading from "react-loading";

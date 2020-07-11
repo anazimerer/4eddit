@@ -2,37 +2,35 @@ import React, { useContext } from 'react'
 import FiltersContext from '../../Context/FiltersContext'
 import useInputValue from '../../Hooks/useInputValue'
 
+
 export default function Filters (){
-    const {filters, dispatch } = useContext(FiltersContext);
-    const [name, handleChangeNameInput]=useInputValue(filters.name)
-    const [text, handleChangeTextInput]=useInputValue(filters.text)
-   
+    const filtersContext = useContext(FiltersContext);
+    const [nameInput, handleChangeNameInput, clearNameInput]=useInputValue(filtersContext.filters.name)
+    const [textInput, handleChangeTextInput, clearTextInput]=useInputValue(filtersContext.filters.text)   
     
     const onClickApplyFilters = () => {
         const newFilters = { 
-            name: name,
-            text: text,
+            name: nameInput,
+            text: textInput,
         };
+        filtersContext.dispatch({ type: "UPDATE_FILTERS", filters: newFilters });
+    };
     
-        dispatch({ type: "UPDATE_FILTERS", filters: newFilters });
-      };
-    
-      const onClickResetFilters = () => {
-        dispatch({ type: "RESET_FILTERS" });
-        //clearMinValue(minValue)
-        //clearMaxValue(maxValue)
-        //clearName(name)
-      };
+    const onClickResetFilters = () => {
+        filtersContext.dispatch({ type: "RESET_FILTERS" });
+        clearNameInput(nameInput)
+        clearTextInput(textInput)
+    };
 
     return (
         <div>
             <input 
-            value={name}
+            value={nameInput}
             placeholder="Usuário"
             onChange={handleChangeNameInput}
             />
             <input 
-            value={text}
+            value={textInput}
             placeholder="Texto"
             onChange={handleChangeTextInput}
             />
