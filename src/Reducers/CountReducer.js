@@ -35,15 +35,13 @@ export default function CountReducer(props) {
       api
         .put(`/posts/${props.id}/vote`, body, axiosConfig)
         .then(() => {
-          alert("voto computado");
           dispatch({ type: "LIKE" });
         })
         .catch((error) => {
           console.log(error);
-          alert("não votouu");
         });
     } else {
-      alert("só pode dar um like");
+      alert("Você só pode dar um like por publicação");
     }
   };
 

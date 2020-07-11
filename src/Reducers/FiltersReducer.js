@@ -1,24 +1,26 @@
 export const initialState= {
     filters: {
-        name:"",
-        text:""
+        name: null,
+        text: null
     }
 };
 
-export default function FiltersReducer(state, action){
+export default function FiltersReducer(state, action){  
+
     switch(action.type){
-        case "UPDATE_FILTERS":
+        case "UPDATE_FILTERS":                     
             return{
-                name:action.name,
-                text: action.text 
-            };
-                          
+                ...state,
+                filters: action.filters,                
+            };              
         case "RESET_FILTERS":
             return{
-                name:"",
-                text: "" 
+                ...state,
+                filters: initialState.filters
             };
         default:
             return state
     }
+
+   
 }

@@ -1,28 +1,15 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer} from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import api from "../../Sevice/api";
 import Filters from "../../Components/Filters";
+import Posts from '../../Components/Posts/index'
 import useInputValue from "../../Hooks/useInputValue";
 
-import CountReducer from "../../Reducers/CountReducer";
 import FiltersReducer, { initialState } from "../../Reducers/FiltersReducer";
 import FiltersContext from "../../Context/FiltersContext";
 import ReactLoading from "react-loading";
-
-const ContainerPost = styled.div`
-  border: 1px solid black;
-  width: 25vw;
-  margin: 5px;
-  div {
-    display: flex;
-    flex-direction: row;
-    span {
-      margin: 10px;
-    }
-  }
-`;
 
 const LoadingContainer = styled.div`
   display: flex;
@@ -38,10 +25,11 @@ export default function FeedPage() {
     handleChangeInputNewPost,
     clearNewPostInput,
   ] = useInputValue("");
-  const [filtersState, filtersDispatch] = useReducer(
+  const [state, dispatch] = useReducer(
     FiltersReducer,
     initialState
   );
+
   const [token, setToken] = useState();
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,41 +78,13 @@ export default function FeedPage() {
       });
   };
 
-  const goToPostPage = (id) => {
-    history.push(`/posts/${id}`);
-  };
-
-  const listOfPosts = post.map((posts) => {
-    return (
-      <ContainerPost key={posts.id}>
-        <h4>{posts.username}</h4>
-        <p>{posts.text}</p>
-        <div>
-          <span>
-            <CountReducer value={posts.votesCount} id={posts.id} />
-          </span>
-          <span>
-            {posts.commentsCount} comentários
-            <button
-              onClick={() => {
-                goToPostPage(posts.id);
-              }}
-            >
-              ver comentários
-            </button>
-          </span>
-        </div>
-      </ContainerPost>
-    );
-  });
-
   const render = loading ? (
     <LoadingContainer>
       <ReactLoading type="spokes" color="blue" />
     </LoadingContainer>
   ) : (
     <FiltersContext.Provider
-      value={{ filters: filtersState, dispatch: filtersDispatch }}
+	  value={{ filters: state.filters, dispatch: dispatch }}
     >
       <div>
         FeedPage
@@ -137,12 +97,12 @@ export default function FeedPage() {
             placeholder="Escreva algo"
             onChange={handleChangeInputNewPost}
           />
-          <button onClick={onClickCreatePost}>postar</button>
+        <button onClick={onClickCreatePost}>postar</button>
         </section>
         <div>
           <Filters />
         </div>
-        <section>{listOfPosts}</section>
+		<Posts allPosts={post}/>
       </div>
     </FiltersContext.Provider>
   );
