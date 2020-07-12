@@ -12,11 +12,26 @@ import {
   LoadingContainer,
   ReturnButtonContainer,
   ReturnButton,
+  SocialShareContainer,
 } from "./styles";
 import PostComments from "../PostComments/PostComments.js";
 import api from "../../Sevice/api";
 import { useHistory } from "react-router-dom";
 import ReactLoading from "react-loading";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
+import {
+  EmailIcon,
+  FacebookIcon,
+  TelegramIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
 
 function PostDetail(props) {
   const [postDetail, setPostDetail] = useState({});
@@ -112,6 +127,27 @@ function PostDetail(props) {
             <PostFooter>{postDetail && comments}</PostFooter>
           </MainPost>
         </PostContainer>
+        <SocialShareContainer>
+          <WhatsappShareButton quote={postDetail.text} url={"www.g1.com.br"}>
+            <WhatsappIcon round={true} size={35} />
+          </WhatsappShareButton>
+          <TwitterShareButton title={postDetail.text} url={"www.g1.com.br"}>
+            <TwitterIcon round={true} size={35} />
+          </TwitterShareButton>
+          <FacebookShareButton quote={postDetail.text} url={"www.g1.com.br"}>
+            <FacebookIcon round={true} size={35} />
+          </FacebookShareButton>
+          <TelegramShareButton title={postDetail.text} url={"www.g1.com.br"}>
+            <TelegramIcon round={true} size={35} />
+          </TelegramShareButton>
+          <EmailShareButton
+            body={postDetail.text}
+            subjetct={"Confire isso!"}
+            url={"www.g1.com.br"}
+          >
+            <EmailIcon round={true} size={35} />
+          </EmailShareButton>
+        </SocialShareContainer>
         <CommentInPostContainer>
           <CommentTextArea
             value={commentText}
