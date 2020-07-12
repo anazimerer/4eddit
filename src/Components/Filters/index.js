@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 import FiltersContext from '../../Context/FiltersContext'
 import useInputValue from '../../Hooks/useInputValue'
+import styled from 'styled-components';
 
-
+const Container=styled.div`
+    display: flex;
+    flex-direction: row;
+`
 export default function Filters (){
     const filtersContext = useContext(FiltersContext);
     const [nameInput, handleChangeNameInput, clearNameInput]=useInputValue(filtersContext.filters.name)
@@ -23,19 +27,20 @@ export default function Filters (){
     };
 
     return (
-        <div>
+        <Container>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
             <input 
-            value={nameInput}
-            placeholder="Usuário"
-            onChange={handleChangeNameInput}
+                value={nameInput}
+                placeholder="Busca por usuário"
+                onChange={handleChangeNameInput}
             />
             <input 
-            value={textInput}
-            placeholder="Texto"
-            onChange={handleChangeTextInput}
+                value={textInput}
+                placeholder="Busca por postagem"
+                onChange={handleChangeTextInput}
             />
-            <button onClick={onClickApplyFilters}>BUSCAR</button>
-            <button onClick={onClickResetFilters}>APAGAR</button>
-        </div>
+            <button onClick={onClickApplyFilters}><i class="material-icons">search</i></button>
+            <button onClick={onClickResetFilters}><i class="material-icons">delete</i></button>
+        </Container>
     )
 }

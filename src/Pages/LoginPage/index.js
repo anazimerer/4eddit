@@ -1,7 +1,35 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import useInputValue from "../../Hooks/useInputValue";
 import api from '../../Sevice/api'
+
+const Container =styled.div`
+	display: flex;
+	justify-content: center;
+	flex-direction:column;
+	align-items: center;
+	form{
+		display: flex;
+		flex-direction: column;
+		input, label{
+			margin: 5px;
+			width: 20vw;
+		}
+	}
+	h1{
+  		margin-bottom: 10px;
+  		font-size: 2.5vw;
+	}
+	div{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		button{
+			margin: 10px 10px;
+		}
+	}
+`
 
 export default function Login(){
     const [email, handleChangeEmail, clearEmailInput] = useInputValue("");
@@ -36,9 +64,10 @@ export default function Login(){
 	}
 
     return(
-        <div>
-        	<forms>			
-        	  	<label>email:</label> 
+        <Container>
+			<h1>Login</h1>
+        	<form>			
+        	  	<label>Email:</label> 
 				<input 
 					value={email} 
 					type="email"
@@ -58,9 +87,12 @@ export default function Login(){
 				  	onChange={handleChangePassword}
 				  	required
 				/> 
-				<button onClick={onClickLogin}>ENTRAR</button> 
-				<button onClick={goToSignupPage}>CADASTRAR</button>                 
-			</forms>
-		</div>
+				<div>
+					<button onClick={onClickLogin}>ENTRAR</button> 
+					<button onClick={goToSignupPage}>CADASTRAR</button>  
+				</div>
+				               
+			</form>
+		</Container>
     );
 }

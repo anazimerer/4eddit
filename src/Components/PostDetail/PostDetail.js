@@ -153,7 +153,7 @@ function PostDetail(props) {
             value={commentText}
             onChange={handleCommentTextArea}
           />
-          <button onClick={createComment}>Comentar</button>
+          <button onClick={createComment}>COMENTAR</button>
         </CommentInPostContainer>
         <h3>
           {postDetailCommentNumber}

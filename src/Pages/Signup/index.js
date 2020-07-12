@@ -69,9 +69,9 @@ export default function SignUp() {
             type="password"
           />
           <ButtonContainer>
-            <SignupButton>Cadastrar</SignupButton>
+            <SignupButton>CADASTRAR</SignupButton>
             <GoToLoginButton onClick={goToLoginPage}>
-              Já possuo conta
+              JÁ POSSUO CONTA!
             </GoToLoginButton>
           </ButtonContainer>
         </form>

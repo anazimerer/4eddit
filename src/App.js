@@ -5,8 +5,10 @@ import Header from './Components/Header/index.js';
 
 export default function App() {     
   return (
-      <BrowserRouter>    
-          <Routes />    
+      <BrowserRouter> 
+      <Header />          
+      <Routes />  
+          
       </BrowserRouter>
   );
 }

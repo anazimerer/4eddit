@@ -12,8 +12,9 @@ export const PostPageContainer = styled.div`
 
 export const MainPost = styled.div`
   width: 35vw;
-  height: 45vh;
+  height: 35vh;
   border: 1px solid black;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,16 +25,27 @@ export const PostAuthorContainer = styled.div`
   width: 35vw;
   display: flex;
   justify-content: center;
+  border-radius: 5px;
 `;
 
 export const PostAuthor = styled.p``;
 
 export const PostFooter = styled.div`
   border-top: 1px solid black;
-  width: 35vw;
+  width: 100%;
   display: flex;
   justify-content: center;
+  border-radius: 5px;
 `;
+
+export const ButtonVote =styled.a`
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  :hover{
+    color: #3b88c3;
+  }
+`
 export const CommentTextArea = styled.textarea`
   width: 20vw;
   margin: 0 10px 0 0;
@@ -54,6 +66,7 @@ export const PostTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 `;
 export const LoadingContainer = styled.div`
   display: flex;
