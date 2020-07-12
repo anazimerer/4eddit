@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useReducer} from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import api from "../../Sevice/api";
 import Filters from "../../Components/Filters";
-import Posts from '../../Components/Posts/index'
+import Posts from "../../Components/Posts/index";
+import Header from "../../Components/Header/index";
 import useInputValue from "../../Hooks/useInputValue";
 
 import FiltersReducer, { initialState } from "../../Reducers/FiltersReducer";
@@ -25,10 +26,7 @@ export default function FeedPage() {
     handleChangeInputNewPost,
     clearNewPostInput,
   ] = useInputValue("");
-  const [state, dispatch] = useReducer(
-    FiltersReducer,
-    initialState
-  );
+  const [state, dispatch] = useReducer(FiltersReducer, initialState);
 
   const [token, setToken] = useState();
   const [post, setPost] = useState([]);
@@ -84,9 +82,10 @@ export default function FeedPage() {
     </LoadingContainer>
   ) : (
     <FiltersContext.Provider
-	  value={{ filters: state.filters, dispatch: dispatch }}
+      value={{ filters: state.filters, dispatch: dispatch }}
     >
       <div>
+        <Header />
         FeedPage
         <section>
           Criar Post:
@@ -97,12 +96,12 @@ export default function FeedPage() {
             placeholder="Escreva algo"
             onChange={handleChangeInputNewPost}
           />
-        <button onClick={onClickCreatePost}>postar</button>
+          <button onClick={onClickCreatePost}>postar</button>
         </section>
         <div>
           <Filters />
         </div>
-		<Posts allPosts={post}/>
+        <Posts allPosts={post} />
       </div>
     </FiltersContext.Provider>
   );

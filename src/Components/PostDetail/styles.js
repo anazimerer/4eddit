@@ -70,3 +70,7 @@ export const ReturnButtonContainer = styled.div`
   justify-content: center;
   margin-bottom: 20px;
 `;
+
+export const ReturnButton = styled.button`
+  margin-top: 20px;
+`;

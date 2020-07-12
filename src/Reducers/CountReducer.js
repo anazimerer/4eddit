@@ -17,7 +17,7 @@ function reducer(state, action) {
 }
 
 export default function CountReducer(props) {
-   const [token]=useState(localStorage.getItem('token'))
+  const [token]=useState(localStorage.getItem('token'))
   const [state, dispatch] = useReducer(reducer, initialState);
   const [vote, setVote] = useState(0);
 

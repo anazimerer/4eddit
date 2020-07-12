@@ -11,6 +11,7 @@ import {
   CommentInPostContainer,
   LoadingContainer,
   ReturnButtonContainer,
+  ReturnButton,
 } from "./styles";
 import PostComments from "../PostComments/PostComments.js";
 import api from "../../Sevice/api";
@@ -98,7 +99,7 @@ function PostDetail(props) {
     <div>
       <PostPageContainer>
         <ReturnButtonContainer>
-          <button onClick={returnToFeedPage}>Voltar</button>
+          <ReturnButton onClick={returnToFeedPage}>Voltar</ReturnButton>
         </ReturnButtonContainer>
         <PostContainer>
           <MainPost>

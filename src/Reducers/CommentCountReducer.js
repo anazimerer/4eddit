@@ -19,6 +19,7 @@ function reducer(state, action) {
 export default function CountReducer(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [vote, setVote] = useState(0);
+  const [token] = useState(localStorage.getItem("token"));
 
   const addLike = () => {
     if (vote === 0 || vote === -1) {
@@ -28,8 +29,7 @@ export default function CountReducer(props) {
       };
       const axiosConfig = {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlZeUNtVkliSU8yenBJOHl5bDl0IiwidXNlcm5hbWUiOiJscGFzc29zIiwiZW1haWwiOiJscGFzc29zQGdtYWlsLmNvbSIsImlhdCI6MTU5NDIzNjE1OH0.Y6SVhbCoSaZZNPs3ni5MjjidOXWqYzCxmdiXTeXV_oA",
+          Authorization: token,
         },
       };
       api
@@ -39,12 +39,10 @@ export default function CountReducer(props) {
           axiosConfig
         )
         .then(() => {
-          alert("votouu");
           dispatch({ type: "LIKE" });
         })
         .catch((error) => {
           console.log(error);
-          alert("não votouu");
         });
     } else {
       alert("só pode dar um like");
@@ -59,8 +57,7 @@ export default function CountReducer(props) {
       };
       const axiosConfig = {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlZeUNtVkliSU8yenBJOHl5bDl0IiwidXNlcm5hbWUiOiJscGFzc29zIiwiZW1haWwiOiJscGFzc29zQGdtYWlsLmNvbSIsImlhdCI6MTU5NDIzNjE1OH0.Y6SVhbCoSaZZNPs3ni5MjjidOXWqYzCxmdiXTeXV_oA",
+          Authorization: token,
         },
       };
 
@@ -71,7 +68,6 @@ export default function CountReducer(props) {
           axiosConfig
         )
         .then(() => {
-          alert("votouu negativo");
           dispatch({ type: "UNLIKE" });
         })
         .catch(() => {
