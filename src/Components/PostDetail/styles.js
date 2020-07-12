@@ -74,3 +74,12 @@ export const ReturnButtonContainer = styled.div`
 export const ReturnButton = styled.button`
   margin-top: 20px;
 `;
+
+export const SocialShareContainer = styled.div`
+  display: flex;
+  width: 35vw;
+  height: 8h;
+  align-items: center;
+  justify-content: center;
+  padding:10px 0;
+`;
