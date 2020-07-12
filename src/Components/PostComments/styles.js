@@ -15,12 +15,14 @@ export const CommentAuthorContainer = styled.div`
   width: 35vw;
   display: flex;
   justify-content: center;
+  border-radius: 5px;
 `;
 
 export const CommentFooter = styled.div`
   border-top: 1px solid black;
   width: 35vw;
   display: flex;
+  border-radius: 5px;
 `;
 
 export const CommentTextContainer = styled.div`

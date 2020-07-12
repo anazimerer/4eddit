@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { PostFooter, ButtonVote } from "../PostDetail/styles";
 
 import CountReducer from "../../Reducers/CountReducer";
 import FiltersContext from "../../Context/FiltersContext";
 
 const ContainerPost = styled.div`
+  width: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   border: 1px solid black;
-  width: 25vw;
-  margin: 5px;
+  margin: 10px;
+  padding: 5px;
   div {
     display: flex;
     flex-direction: row;
@@ -17,6 +23,7 @@ const ContainerPost = styled.div`
     }
   }
 `
+
 export default function Posts(props){
     const filtersContext = useContext(FiltersContext);
     const history = useHistory();
@@ -41,23 +48,26 @@ export default function Posts(props){
     const listOfPosts = filteredPosts.map((posts) => {
         return (
           <ContainerPost key={posts.id}>
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>			  
             <h4>{posts.username}</h4>
+			<hr />
             <p>{posts.text}</p>
-            <div>
+			<hr />
+            <PostFooter>
               <span>
                 <CountReducer value={posts.votesCount} id={posts.id} />
               </span>
               <span>
                 {posts.commentsCount} comentários
-                <button
+                <ButtonVote
                   onClick={() => {
                     goToPostPage(posts.id);
                   }}
                 >
-                  ver comentários
-                </button>
+                  <i class="material-icons">chat_bubble</i>
+                </ButtonVote>
               </span>
-            </div>
+			  </PostFooter>
           </ContainerPost>
         );
       });

@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect, useState } from "react";
 import api from "../Sevice/api";
+import { ButtonVote } from "../Components/PostDetail/styles";
 
 const initialState = {
   count: 0,
@@ -82,9 +83,10 @@ export default function CountReducer(props) {
 
   return (
     <div>
-      <button onClick={addLike}>+</button>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+      <ButtonVote onClick={addLike}><i class="small material-icons">arrow_upward</i></ButtonVote>
       <span>{totalOfLikes}</span>
-      <button onClick={removeLike}>-</button>
+      <ButtonVote onClick={removeLike}><i class="material-icons">arrow_downward</i></ButtonVote>
     </div>
   );
 }

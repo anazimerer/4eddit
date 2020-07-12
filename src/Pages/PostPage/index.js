@@ -11,7 +11,6 @@ export default function Post() {
 
   return (
     <div>
-      <Header />
       <PostDetail id={postId.id} />
     </div>
   );
